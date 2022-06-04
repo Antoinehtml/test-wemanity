@@ -29,7 +29,6 @@ const breakpoints = createBreakpoints({
 const colors = {
   primary: "white",
   secondary: "black",
-  tertiary: "lightGrey",
   darkBlue: '#080817',
 };
 

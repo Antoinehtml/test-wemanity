@@ -1,6 +1,7 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import { useForm, Controller } from "react-hook-form";
-import { useEffect } from 'react'
-import { useRouter } from 'next/router'
+import { useState } from 'react';
+import { useRouter } from 'next/router';
 
 import {
     Heading,
@@ -11,17 +12,30 @@ import {
     FormLabel,
     Button,
     Text,
+    Modal,
+    ModalOverlay,
+    ModalContent,
+    ModalCloseButton,
+    ModalBody,
+    ModalFooter,
+    useDisclosure,
+    ModalHeader,
 } from "@chakra-ui/react";
 
 import Col from "../comps/Misc/Col";
 import Container from "../comps/Misc/Container";
 
+
 const newEntry = () => {
+    const router = useRouter()
+    const [isSubmitted, setIsSubmitted] = useState(false)
+
+    const { isOpen, onOpen, onClose } = useDisclosure()
+
     const {
         register,
         handleSubmit,
         formState: { isSubmitting, errors },
-        // eslint-disable-next-line react-hooks/rules-of-hooks
     } = useForm();
 
     const onSubmit = async (body) => {
@@ -31,8 +45,14 @@ const newEntry = () => {
                 headers: { "Accept": "application/json", 'Content-Type': 'application/json' },
                 body: JSON.stringify(body),
             })
+                .then(res => res.json())
+                .then(result => {
+                    if (result.success) {
+                        onOpen()
+                    }
+                });
 
-            // router.push('/')
+
         } catch (error) {
             console.log(error)
         }
@@ -146,6 +166,29 @@ const newEntry = () => {
                             Envoyer
                         </Text>
                     </Button>
+
+
+                    <Modal onClose={onClose} isOpen={isOpen} motionPreset="slideInRight" isCentered>
+                        <ModalOverlay />
+
+                        <ModalContent>
+                            <ModalCloseButton onClick={onClose} />
+
+                            <ModalHeader>Your contact has been successfully added !</ModalHeader>
+
+                            <ModalBody>
+                                <Text textStyle="smallText">Thank you for registering your phone number</Text>
+                            </ModalBody>
+
+                            <ModalFooter>
+                                <Button variant="basic" onClick={onClose} mr={{ base: 4, lg: 8 }}>Add a new one</Button>
+
+                                <Button variant="basic" onClick={() => router.push('/')}>Take me home</Button>
+                            </ModalFooter>
+                        </ModalContent>
+
+                    </Modal>
+
                 </Flex>
 
             </Col>

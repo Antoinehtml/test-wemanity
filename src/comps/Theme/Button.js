@@ -7,6 +7,22 @@ const Button = {
 	},
 	// Variants
 	variants: {
+		basic: {
+			fontSize: '12px',
+
+			bg: 'transparent',
+			border: "1px solid #080817",
+			borderRadius: '6px',
+
+			justifyContent: 'center',
+
+			position: 'relative',
+
+			h: '100%',
+			w: '100%',
+
+			py: 5,
+		},
 		full_gradient: {
 			fontSize: '12px',
 			bg: 'transparent',

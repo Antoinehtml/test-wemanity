@@ -1,4 +1,4 @@
-import { Flex, Heading, LinkBox, LinkOverlay, Text } from "@chakra-ui/react";
+import { Flex, Heading, LinkBox, LinkOverlay, SimpleGrid, Text } from "@chakra-ui/react";
 import Link from "next/link";
 
 
@@ -20,8 +20,9 @@ const AllEntries = ({ contacts }) => {
 
                 <Text textStyle="smallText">There is a total of {contacts.length} contacts for the moment</Text>
 
+
                 {contacts.length > 0 ?
-                    <Flex>
+                    <SimpleGrid columns={4} spacing={8}>
                         {contacts.map((contact, index) => (
                             <Flex key={`contact - ${index}`} flexDirection="column" mt={10} _notLast={{ mr: 8 }}>
                                 <Text textTransform="capitalize">{contact.firstname} {contact.lastname}</Text>
@@ -33,7 +34,7 @@ const AllEntries = ({ contacts }) => {
                                 </Link>
                             </Flex>
                         ))}
-                    </Flex> : null}
+                    </SimpleGrid> : null}
 
             </Col>
         </Container>
