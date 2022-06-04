@@ -7,7 +7,7 @@ import Container from "../comps/Misc/Container";
 
 const AllEntries = ({ contacts }) => {
     return (
-        <Container bg="darkBlue" color="primary" h="calc(100vh - var(--top-bar-height))">
+        <Container bg="darkBlue" color="primary" minH="calc(100vh - var(--top-bar-height))" py={{ base: 8, lg: 16 }}>
             <Col
                 colStart={3}
                 colEnd={25}

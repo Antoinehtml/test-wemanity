@@ -89,7 +89,7 @@ const theme = extendTheme({
         position: 'absolute',
         width: '100%',
         height: '100%',
-        top: '4px',
+        top: '0px',
         left: '0',
         borderRadius: '0',
         bg: 'transparent',

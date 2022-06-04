@@ -35,7 +35,7 @@ const Button = {
 			position: 'relative',
 
 			h: '100%',
-			w: '100%',
+			w: '150px',
 
 			py: 5,
 
@@ -47,22 +47,23 @@ const Button = {
 				top: '0',
 				left: '0',
 				borderRadius: '0',
-				bg: 'transparent',
 				bgImage: 'linear-gradient(#fff, #fff)',
-				bgPosition: '100% 100%',
+				bgPosition: '0% 100%',
 				bgSize: '0% 100%',
 				bgRepeat: 'no-repeat',
 				pointerEvents: 'none',
 				transition: 'background-size 0.3s ease-in-out',
-				zIndex: '-1',
 			},
 
 			_hover: {
-				bgColor: 'primary',
-				borderColor: 'secondary',
+				_before: {
+					bgSize: '100% 100%',
+					bgPosition: '100% 100%',
+				},
 
 				'& p': {
-					color: "darkBlue"
+					color: "darkBlue",
+					zIndex: 1,
 				},
 
 				'& path': {
@@ -73,7 +74,6 @@ const Button = {
 			_focus: {
 				boxShadow: 'none',
 				outline: 'none',
-				border: 'none',
 			},
 		},
 	},

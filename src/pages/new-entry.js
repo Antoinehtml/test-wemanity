@@ -1,6 +1,5 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import { useForm, Controller } from "react-hook-form";
-import { useState } from 'react';
+import { useForm } from "react-hook-form";
 import { useRouter } from 'next/router';
 
 import {
@@ -28,7 +27,6 @@ import Container from "../comps/Misc/Container";
 
 const newEntry = () => {
     const router = useRouter()
-    const [isSubmitted, setIsSubmitted] = useState(false)
 
     const { isOpen, onOpen, onClose } = useDisclosure()
 
