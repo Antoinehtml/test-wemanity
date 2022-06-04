@@ -1,8 +1,8 @@
 import { GridItem, forwardRef } from "@chakra-ui/react";
 
-const Col = forwardRef((props, ref) => (
-  <GridItem ref={ref} colStart={2} colEnd={{ base: 14, xl: 26 }} {...props}>
-    {props.children}
+const Col = forwardRef(({ children = [], ...rest }, ref) => (
+  <GridItem ref={ref} colStart={2} colEnd={{ base: 14, xl: 26 }} {...rest}>
+    {children}
   </GridItem>
 ));
 

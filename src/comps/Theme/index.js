@@ -30,7 +30,7 @@ const colors = {
   primary: "white",
   secondary: "black",
   tertiary: "lightGrey",
-  darkBlueBg: '#080817',
+  darkBlue: '#080817',
 };
 
 // ? I need to expose my variables to JS as well so I’m creating an object for it
@@ -44,9 +44,34 @@ const theme = extendTheme({
   colors,
   textStyles: {
     // ? https://chakra-ui.com/docs/features/text-and-layer-styles#text-styles
-    mediumParagraph: {
-      fontSize: "18px",
-      lineHeight: "1.2",
+    underlined: {
+      transition: 'all 0.5s ease-in-out',
+
+      position: 'relative',
+
+      _before: {
+        content: '""',
+        position: 'absolute',
+        width: '100%',
+        height: '100%',
+        top: '4px',
+        left: '0',
+        borderRadius: '0',
+        bg: 'transparent',
+        bgImage: 'linear-gradient(currentColor, currentColor)',
+        bgPosition: '0% 100%',
+        bgSize: '0% 1px',
+        bgRepeat: 'no-repeat',
+        pointerEvents: 'none',
+        transition: 'background-size 0.3s ease-in-out',
+      },
+
+      _hover: {
+        _before: {
+          bgSize: '100% 1px',
+          bgPosition: '100% 100%',
+        },
+      },
     },
   },
   styles: {
