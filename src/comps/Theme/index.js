@@ -10,8 +10,8 @@ import Input from "./Input";
 // ? https://chakra-ui.com/docs/theming/theme#typography
 const fonts = {
   heading:
-    'Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
-  body: 'Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
+    'Epilogue, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
+  body: 'Inter, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
 };
 
 // ? https://chakra-ui.com/docs/theming/theme#breakpoints
@@ -44,7 +44,43 @@ const theme = extendTheme({
   colors,
   textStyles: {
     // ? https://chakra-ui.com/docs/features/text-and-layer-styles#text-styles
+    smallText: {
+      fontSize: ["8px", null, null, null, "10px"]
+    },
     underlined: {
+      transition: 'all 0.5s ease-in-out',
+      w: "fit-content",
+
+      position: 'relative',
+
+      _before: {
+        content: '""',
+        position: 'absolute',
+        width: '100%',
+        height: '100%',
+        top: '4px',
+        left: '0',
+        borderRadius: '0',
+        bg: 'transparent',
+        bgImage: 'linear-gradient(currentColor, currentColor)',
+        bgPosition: '0% 100%',
+        bgSize: '0% 1px',
+        bgRepeat: 'no-repeat',
+        pointerEvents: 'none',
+        transition: 'background-size 0.3s ease-in-out',
+      },
+
+      _hover: {
+        _before: {
+          bgSize: '100% 1px',
+          bgPosition: '100% 100%',
+        },
+      },
+    },
+    smallTextUnderlined: {
+      fontSize: "12px",
+      fontStyle: 'italic',
+      w: "fit-content",
       transition: 'all 0.5s ease-in-out',
 
       position: 'relative',

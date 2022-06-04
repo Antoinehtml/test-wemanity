@@ -5,7 +5,7 @@ const Heading = {
 	sizes: {},
 	variants: {
 		h1: {
-			fontSize: ['32px', null, null, null, null, "36px", 'calc(28px + 1.2vw)'],
+			fontSize: ['32px', null, null, null, null, "40px", 'calc(28px + 1.2vw)'],
 			fontWeight: '700',
 			lineHeight: '1.1',
 		},
