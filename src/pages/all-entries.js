@@ -1,4 +1,4 @@
-import { Flex, Heading, LinkBox, LinkOverlay, SimpleGrid, Text } from "@chakra-ui/react";
+import { Flex, Heading, SimpleGrid, Text } from "@chakra-ui/react";
 import Link from "next/link";
 
 

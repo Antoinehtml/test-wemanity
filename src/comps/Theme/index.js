@@ -44,7 +44,7 @@ const theme = extendTheme({
   textStyles: {
     // ? https://chakra-ui.com/docs/features/text-and-layer-styles#text-styles
     smallText: {
-      fontSize: ["8px", null, null, null, "10px"]
+      fontSize: ["10px", null, null, null, "12px"]
     },
     underlined: {
       transition: 'all 0.5s ease-in-out',

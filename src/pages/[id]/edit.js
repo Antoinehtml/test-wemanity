@@ -1,13 +1,11 @@
-/* eslint-disable react-hooks/rules-of-hooks */
-import { useForm } from "react-hook-form";
-import { useRouter } from 'next/router';
+import { useForm, Controller } from "react-hook-form";
+import { useState } from 'react'
+import { useRouter } from 'next/router'
 
 import {
     Heading,
     FormControl,
     Input,
-    InputGroup,
-    InputRightElement,
     Flex,
     FormErrorMessage,
     FormLabel,
@@ -21,28 +19,34 @@ import {
     ModalFooter,
     useDisclosure,
     ModalHeader,
+    InputGroup,
+    InputRightElement,
 } from "@chakra-ui/react";
-import { PhoneIcon, InfoOutlineIcon } from '@chakra-ui/icons'
-
-import Col from "../comps/Misc/Col";
-import Container from "../comps/Misc/Container";
 
 
-const newEntry = () => {
+import Container from '../../comps/Misc/Container';
+import Col from '../../comps/Misc/Col';
+import { InfoOutlineIcon, PhoneIcon } from '@chakra-ui/icons';
+
+const EditEntry = ({ contact }) => {
     const router = useRouter()
 
     const { isOpen, onOpen, onClose } = useDisclosure()
+
+    const [form, setForm] = useState({ firstname: contact.firstname, lastname: contact.lastname, phone: contact.phone })
 
     const {
         register,
         handleSubmit,
         formState: { isSubmitting, errors },
+        // eslint-disable-next-line react-hooks/rules-of-hooks
     } = useForm();
+
 
     const onSubmit = async (body) => {
         try {
-            const res = await fetch('http://localhost:3000/api/contacts', {
-                method: 'POST',
+            const res = await fetch(`http://localhost:3000/api/contacts/${router.query.id}`, {
+                method: 'PUT',
                 headers: { "Accept": "application/json", 'Content-Type': 'application/json' },
                 body: JSON.stringify(body),
             })
@@ -53,11 +57,12 @@ const newEntry = () => {
                     }
                 });
 
-
+            // router.push('/')
         } catch (error) {
             console.log(error)
         }
     }
+
     return (
         <Container bg="darkBlue" color="primary" h="calc(100vh - var(--top-bar-height))">
             <Col
@@ -68,8 +73,7 @@ const newEntry = () => {
                 justifyContent="center"
                 alignItems="center"
             >
-                <Heading mb={{ base: 4, lg: 8 }}>New entry</Heading>
-
+                <Heading mb={{ base: 4, lg: 8 }}>Update entry</Heading>
 
                 <Flex
                     flexDirection="column"
@@ -83,11 +87,12 @@ const newEntry = () => {
                         isInvalid={errors.firstname?.message}
                         mb={{ base: 2, lg: 4 }}
                     >
-                        <FormLabel mb={2}>What&apos;s your first name ?</FormLabel>
+                        <FormLabel>What&apos;s your first name ?</FormLabel>
+
 
                         <InputGroup>
                             <Input
-                                placeholder="your first name"
+                                placeholder={form.firstname}
                                 id="firstname"
                                 name="firstname"
                                 type="string"
@@ -105,6 +110,8 @@ const newEntry = () => {
                             </InputRightElement>
                         </InputGroup>
 
+
+
                         <FormErrorMessage>
                             {errors.firstname?.type === 'required' && "First name is required" || errors.firstname?.type === 'pattern' && "No number allowed"}
                         </FormErrorMessage>
@@ -115,11 +122,11 @@ const newEntry = () => {
                         isInvalid={errors.lastname?.message}
                         mb={{ base: 2, lg: 4 }}
                     >
-                        <FormLabel mb={2}>What&apos;s your last name ?</FormLabel>
+                        <FormLabel>What&apos;s your last name ?</FormLabel>
 
                         <InputGroup>
                             <Input
-                                placeholder="your last name"
+                                placeholder={form.lastname}
                                 id="lastname"
                                 name="lastname"
                                 type="string"
@@ -137,6 +144,7 @@ const newEntry = () => {
                             </InputRightElement>
                         </InputGroup>
 
+
                         <FormErrorMessage>
                             {errors.lastname?.type === 'required' && "First name is required" || errors.lastname?.type === 'pattern' && "No number allowed"}
                         </FormErrorMessage>
@@ -147,11 +155,11 @@ const newEntry = () => {
                         isInvalid={errors.phone?.message}
                         mb={{ base: 8, lg: 16 }}
                     >
-                        <FormLabel mb={2}>What&apos;s your phone number ?</FormLabel>
+                        <FormLabel>What&apos;s your phone number ?</FormLabel>
 
                         <InputGroup>
                             <Input
-                                placeholder="+32 02 3784350"
+                                placeholder={form.phone}
                                 id="phone"
                                 name="phone"
                                 type="string"
@@ -177,14 +185,13 @@ const newEntry = () => {
                         variant="full_gradient"
                         type="submit"
                         isLoading={isSubmitting}
-                        maxW={{ base: "100%", lg: "50%" }}
-                        alignSelf="center"
+                        mb={{ base: 8, lg: 0 }}
+
                     >
                         <Text>
-                            Envoyer
+                            Update
                         </Text>
                     </Button>
-
 
                     <Modal onClose={onClose} isOpen={isOpen} motionPreset="slideInRight" isCentered>
                         <ModalOverlay />
@@ -192,14 +199,14 @@ const newEntry = () => {
                         <ModalContent>
                             <ModalCloseButton onClick={onClose} />
 
-                            <ModalHeader>Your contact has been successfully added !</ModalHeader>
+                            <ModalHeader>Your contact has been successfully modified !</ModalHeader>
 
                             <ModalBody>
-                                <Text textStyle="smallText">Thank you for registering your phone number</Text>
+                                <Text textStyle="smallText">Thank you for updating this infos</Text>
                             </ModalBody>
 
                             <ModalFooter>
-                                <Button variant="basic" onClick={onClose} mr={{ base: 4, lg: 8 }}>Add a new one</Button>
+                                <Button variant="basic" onClick={() => router.push('/all-entries')} mr={{ base: 4, lg: 8 }}>See all entries</Button>
 
                                 <Button variant="basic" onClick={() => router.push('/')}>Take me home</Button>
                             </ModalFooter>
@@ -208,10 +215,19 @@ const newEntry = () => {
                     </Modal>
 
                 </Flex>
-
             </Col>
-        </Container>
+        </Container >
     );
 };
 
-export default newEntry;
+export default EditEntry;
+
+
+EditEntry.getInitialProps = async ({ query: { id } }) => {
+    // ? fetch one result based on id
+    const res = await fetch(`http://localhost:3000/api/contacts/${id}`)
+
+    const { data } = await res.json()
+
+    return { contact: data }
+}
