@@ -14,7 +14,7 @@ export default function Home() {
     <Container bg="darkBlue" color="primary" h="calc(100vh - var(--top-bar-height))">
       <Col colStart={3} colEnd={25} display="flex" flexDirection="column" alignItems="center" justifyContent="center">
         <Heading as="h1" variant="h1" mb={{ base: 8, lg: 16 }} textAlign={{ base: "center", lg: "left" }}>
-          Wemanity Phone Test
+          Wemanity Phonebook
         </Heading>
 
         <InputGroup maxW={{ base: "100%", lg: "50%" }}>
