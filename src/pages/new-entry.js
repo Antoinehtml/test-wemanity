@@ -24,8 +24,19 @@ const newEntry = () => {
         // eslint-disable-next-line react-hooks/rules-of-hooks
     } = useForm();
 
-    const onSubmit = () => { console.log('ok') }
+    const onSubmit = async (body) => {
+        try {
+            const res = await fetch('http://localhost:3000/api/contacts', {
+                method: 'POST',
+                headers: { "Accept": "application/json", 'Content-Type': 'application/json' },
+                body: JSON.stringify(body),
+            })
 
+            // router.push('/')
+        } catch (error) {
+            console.log(error)
+        }
+    }
     return (
         <Container bg="darkBlue" color="primary" h="calc(100vh - var(--top-bar-height))">
             <Col
@@ -49,7 +60,7 @@ const newEntry = () => {
                 >
                     <FormControl
                         isRequired
-                        isInvalid={errors.name?.message}
+                        isInvalid={errors.firstname?.message}
                         mb={{ base: 2, lg: 4 }}
                     >
                         <FormLabel mb={2}>What&apos;s your first name ?</FormLabel>
@@ -60,20 +71,22 @@ const newEntry = () => {
                             name="firstname"
                             type="string"
                             {...register("firstname", {
+                                pattern: {
+                                    value: /[^0-9]/,
+                                    message: "No number allowed"
+                                },
                                 required: "Please type in your first name",
                             })}
                         />
 
                         <FormErrorMessage>
-                            {/* {errors.name?.message && (
-        <ErrorField>{errors.name?.message}</ErrorField>
-      )} */}
+                            {errors.firstname?.type === 'required' && "First name is required" || errors.firstname?.type === 'pattern' && "No number allowed"}
                         </FormErrorMessage>
                     </FormControl>
 
                     <FormControl
                         isRequired
-                        isInvalid={errors.name?.message}
+                        isInvalid={errors.lastname?.message}
                         mb={{ base: 2, lg: 4 }}
                     >
                         <FormLabel mb={2}>What&apos;s your last name ?</FormLabel>
@@ -84,20 +97,22 @@ const newEntry = () => {
                             name="lastname"
                             type="string"
                             {...register("lastname", {
+                                pattern: {
+                                    value: /[^0-9]/,
+                                    message: "No number allowed"
+                                },
                                 required: "Please type in your last name",
                             })}
                         />
 
                         <FormErrorMessage>
-                            {/* {errors.name?.message && (
-        <ErrorField>{errors.name?.message}</ErrorField>
-      )} */}
+                            {errors.lastname?.type === 'required' && "First name is required" || errors.lastname?.type === 'pattern' && "No number allowed"}
                         </FormErrorMessage>
                     </FormControl>
 
                     <FormControl
                         isRequired
-                        isInvalid={errors.name?.message}
+                        isInvalid={errors.phone?.message}
                         mb={{ base: 8, lg: 16 }}
                     >
                         <FormLabel mb={2}>What&apos;s your phone number ?</FormLabel>
@@ -108,14 +123,15 @@ const newEntry = () => {
                             name="phone"
                             type="string"
                             {...register("phone", {
-                                pattern: /\+[1-9]{2}\s{1}\d{2}\s{1}\d{6,10}/,
+                                pattern: {
+                                    value: /\+[1-9]{2}\s{1}\d{2}\s{1}\d{6,10}/,
+                                    message: "Invalid phone format"
+                                }
                             })}
                         />
 
                         <FormErrorMessage>
-                            {/* {errors.name?.message && (
-        <ErrorField>{errors.name?.message}</ErrorField>
-      )} */}
+                            {errors.phone?.message}
                         </FormErrorMessage>
                     </FormControl>
 

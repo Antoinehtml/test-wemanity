@@ -6,7 +6,6 @@ import Col from "../comps/Misc/Col";
 import Container from "../comps/Misc/Container";
 
 const AllEntries = ({ contacts }) => {
-    console.log(contacts.length)
     return (
         <Container bg="darkBlue" color="primary" h="calc(100vh - var(--top-bar-height))">
             <Col
