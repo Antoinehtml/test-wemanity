@@ -13,11 +13,11 @@ export default function Home() {
   return (
     <Container bg="darkBlue" color="primary" h="calc(100vh - var(--top-bar-height))">
       <Col colStart={3} colEnd={25} display="flex" flexDirection="column" alignItems="center" justifyContent="center">
-        <Heading as="h1" variant="h1" mb={{ base: 8, lg: 16 }}>
+        <Heading as="h1" variant="h1" mb={{ base: 8, lg: 16 }} textAlign={{ base: "center", lg: "left" }}>
           Wemanity Phone Test
         </Heading>
 
-        <InputGroup maxW="50%">
+        <InputGroup maxW={{ base: "100%", lg: "50%" }}>
           <Input
             value={value}
             onChange={handleChange}
@@ -30,7 +30,7 @@ export default function Home() {
           </InputRightElement>
         </InputGroup>
 
-        <Flex w="50%" justifyContent="flex-end">
+        <Flex w={{ base: "100%", lg: "50%" }} justifyContent="flex-end">
           <Link href="/new-entry" passHref>
             <Text as="a" textStyle="underlined">Add a new entry</Text>
           </Link>
