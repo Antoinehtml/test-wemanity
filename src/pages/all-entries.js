@@ -1,11 +1,11 @@
 import { Flex, Heading, SimpleGrid, Text } from "@chakra-ui/react";
 import Link from "next/link";
+import ContactCard from "../comps/Content/ContactCard";
 
 import Col from "../comps/Misc/Col";
 import Container from "../comps/Misc/Container";
 
 const AllEntries = ({ contacts }) => {
-  //   console.log(contacts.data.data);
   return (
     <Container
       bg="darkBlue"
@@ -32,33 +32,14 @@ const AllEntries = ({ contacts }) => {
 
         <Text textStyle="smallText">
           There is a total of{" "}
-          {contacts.data.data.length > 0 ? contacts.data.data.length : 0}{" "}
-          contacts for the moment
+          {contacts.contacts.length > 0 ? contacts.contacts.length : 0} contacts
+          for the moment
         </Text>
 
-        {contacts.data.data.length > 0 ? (
+        {contacts.contacts.length > 0 ? (
           <SimpleGrid columns={4} spacing={8}>
-            {contacts.data.data.map((contact, index) => (
-              <Flex
-                key={`contact - ${index}`}
-                flexDirection="column"
-                mt={10}
-                _notLast={{ mr: 8 }}
-              >
-                <Text textTransform="capitalize">
-                  {contact.firstname} {contact.lastname}
-                </Text>
-
-                <Text mb={2} textTransform="capitalize">
-                  {contact.phone}
-                </Text>
-
-                <Link href={`/${contact._id}`} passHref>
-                  <Text as="a" textStyle="smallTextUnderlined">
-                    Edit this contact
-                  </Text>
-                </Link>
-              </Flex>
+            {contacts.contacts.map((contact, index) => (
+              <ContactCard key={`contact-${index}`} contact={contact} />
             ))}
           </SimpleGrid>
         ) : null}

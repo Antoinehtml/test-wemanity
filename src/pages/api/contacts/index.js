@@ -10,38 +10,36 @@ export default async (req, res) => {
   switch (method) {
     case "GET":
       try {
-        const pageNumber = parseInt(req.query.pageNumber) || 0;
-        const limit = parseInt(req.query.limit) || 12;
+        // const pageNumber = parseInt(req.query.pageNumber) || 0;
+        // const limit = parseInt(req.query.limit) || 12;
+        // let contacts = {};
+        // const totalPosts = await Contact.countDocuments().exec();
+        // let startIndex = pageNumber * limit;
+        // const endIndex = (pageNumber + 1) * limit;
+        // contacts.totalPosts = totalPosts;
+        // if (startIndex > 0) {
+        //   contacts.previous = {
+        //     pageNumber: pageNumber - 1,
+        //     limit: limit,
+        //   };
+        // }
+        // if (endIndex < (await Contact.countDocuments().exec())) {
+        //   contacts.next = {
+        //     pageNumber: pageNumber + 1,
+        //     limit: limit,
+        //   };
+        // }
+        // contacts = await Contact.find()
+        //   .sort("-_id")
+        //   .skip(startIndex)
+        //   .limit(limit)
+        //   .exec();
+        // contacts.rowsPerPage = limit;
+        // return res.json({ contacts });
 
-        const contacts = {};
+        const contacts = await Contact.find({});
 
-        const totalPosts = await Contact.countDocuments().exec();
-
-        let startIndex = pageNumber * limit;
-        const endIndex = (pageNumber + 1) * limit;
-        contacts.totalPosts = totalPosts;
-
-        if (startIndex > 0) {
-          contacts.previous = {
-            pageNumber: pageNumber - 1,
-            limit: limit,
-          };
-        }
-        if (endIndex < (await Contact.countDocuments().exec())) {
-          contacts.next = {
-            pageNumber: pageNumber + 1,
-            limit: limit,
-          };
-        }
-
-        contacts.data = await Contact.find()
-          .sort("-_id")
-          .skip(startIndex)
-          .limit(limit)
-          .exec();
-        contacts.rowsPerPage = limit;
-
-        return res.json({ msg: "Posts Fetched successfully", data: contacts });
+        res.status(200).json({ success: true, contacts });
       } catch (error) {
         res.status(400).json({ success: false, error });
       }
