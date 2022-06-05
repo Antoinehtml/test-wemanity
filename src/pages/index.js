@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import {
   Button,
+  Collapse,
   Flex,
   Heading,
   Input,
@@ -22,6 +23,13 @@ const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 export default function Home() {
   const [searchDisplayed, setSearchDisplayed] = useState(false);
+
+  // ? Function for Collapse component
+  const [show, setShow] = useState(false);
+
+  const handleToggle = () => {
+    setShow(!show);
+  };
 
   // ? Catch input's value and set it in a State
   const [inputValue, setInputValue] = useState("");
@@ -77,7 +85,7 @@ export default function Home() {
       bg="darkBlue"
       color="primary"
       minH="calc(100vh - var(--top-bar-height))"
-      py={searchDisplayed ? { base: 8, lg: 16 } : 0}
+      py={searchDisplayed ? { base: 8, lg: 16 } : { base: 16, lg: 32 }}
     >
       <Col
         colStart={3}
@@ -85,7 +93,6 @@ export default function Home() {
         display="flex"
         flexDirection="column"
         alignItems="center"
-        justifyContent="center"
       >
         {!searchDisplayed ? (
           <>
@@ -108,54 +115,65 @@ export default function Home() {
                 value={inputValue}
                 onChange={handleChange}
                 placeholder={`Search by ${placeholder}`}
-                position="relative"
                 mb={searchedTerm ? 0 : { base: 4, lg: 8 }}
               />
 
-              {/* <Flex
-                position="absolute"
-                bottom="0px"
-                w="100%"
-                bg="primary"
-                color="darkblue"
-                borderBottomRightRadius="6px"
-                borderBottomLeftRadius="6px"
-                py={2}
-                px={4}
-              >
-                <Text>Elea</Text>
-              </Flex> */}
-
               {/* Dynamic Research */}
               {searchedTerm && (
-                <Flex
-                  flexDirection="column"
-                  bg="primary"
-                  color="darkblue"
-                  borderBottomRightRadius="6px"
-                  borderBottomLeftRadius="6px"
-                  mb={searchedTerm ? { base: 4, lg: 8 } : 0}
-                  mt={-1}
-                  zIndex={2}
-                >
-                  {searchedTerm.map((search, index) => (
-                    <Link
-                      key={`search-name-${index}`}
-                      href={`/${search._id}`}
-                      passHref
+                <>
+                  <Collapse startingHeight={300} in={show}>
+                    <Flex
+                      flexDirection="column"
+                      bg="primary"
+                      color="darkblue"
+                      borderBottomRightRadius="6px"
+                      borderBottomLeftRadius="6px"
+                      mb={searchedTerm ? { base: 4, lg: 8 } : 0}
+                      mt={-1}
+                      zIndex={2}
+                      position="relative"
                     >
-                      <Text
-                        as="a"
-                        _notLast={{ borderBottom: "1px solid #000" }}
-                        py={2}
-                        px={4}
-                        _hover={{ bg: "red" }}
-                      >
-                        {search.firstname} {search.lastname}
+                      {searchedTerm.map((search, index) => (
+                        <Link
+                          key={`search-name-${index}`}
+                          href={`/${search._id}`}
+                          passHref
+                        >
+                          <Text
+                            as="a"
+                            py={2}
+                            px={4}
+                            _hover={{ bg: "lightGray" }}
+                          >
+                            {search.firstname} {search.lastname}
+                          </Text>
+                        </Link>
+                      ))}
+                    </Flex>
+                  </Collapse>
+
+                  <Flex
+                    justifyContent="center"
+                    alignItems="center"
+                    position="absolute"
+                    bottom="0px"
+                    w="100%"
+                    bgGradient={
+                      show
+                        ? "linear(to top, rgba(255,255,255, 1), rgba(255,255,255, 1))"
+                        : "linear-gradient(to top, rgba(255, 255, 255, 1), rgba(255, 255, 255, 1), rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0))"
+                    }
+                    borderBottomRightRadius="6px"
+                    borderBottomLeftRadius="6px"
+                    zIndex={2}
+                  >
+                    <Button variant="unstyled" onClick={handleToggle}>
+                      <Text color="darkBlue">
+                        Show {show ? "less" : "more"} results
                       </Text>
-                    </Link>
-                  ))}
-                </Flex>
+                    </Button>
+                  </Flex>
+                </>
               )}
 
               <InputRightElement>

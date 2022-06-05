@@ -6,7 +6,6 @@ import FormLabel from "./FormLabel";
 import Heading from "./Heading";
 import Input from "./Input";
 
-
 // ? https://chakra-ui.com/docs/theming/theme#typography
 const fonts = {
   heading:
@@ -29,7 +28,8 @@ const breakpoints = createBreakpoints({
 const colors = {
   primary: "white",
   secondary: "black",
-  darkBlue: '#080817',
+  darkBlue: "#080817",
+  lightGray: "#E4E7EC",
 };
 
 // ? I need to expose my variables to JS as well so I’m creating an object for it
@@ -44,67 +44,67 @@ const theme = extendTheme({
   textStyles: {
     // ? https://chakra-ui.com/docs/features/text-and-layer-styles#text-styles
     smallText: {
-      fontSize: ["10px", null, null, null, "12px"]
+      fontSize: ["10px", null, null, null, "12px"],
     },
     underlined: {
-      transition: 'all 0.5s ease-in-out',
+      transition: "all 0.5s ease-in-out",
       w: "fit-content",
 
-      position: 'relative',
+      position: "relative",
 
       _before: {
         content: '""',
-        position: 'absolute',
-        width: '100%',
-        height: '100%',
-        top: '4px',
-        left: '0',
-        borderRadius: '0',
-        bg: 'transparent',
-        bgImage: 'linear-gradient(currentColor, currentColor)',
-        bgPosition: '0% 100%',
-        bgSize: '0% 1px',
-        bgRepeat: 'no-repeat',
-        pointerEvents: 'none',
-        transition: 'background-size 0.3s ease-in-out',
+        position: "absolute",
+        width: "100%",
+        height: "100%",
+        top: "4px",
+        left: "0",
+        borderRadius: "0",
+        bg: "transparent",
+        bgImage: "linear-gradient(currentColor, currentColor)",
+        bgPosition: "0% 100%",
+        bgSize: "0% 1px",
+        bgRepeat: "no-repeat",
+        pointerEvents: "none",
+        transition: "background-size 0.3s ease-in-out",
       },
 
       _hover: {
         _before: {
-          bgSize: '100% 1px',
-          bgPosition: '100% 100%',
+          bgSize: "100% 1px",
+          bgPosition: "100% 100%",
         },
       },
     },
     smallTextUnderlined: {
       fontSize: "12px",
-      fontStyle: 'italic',
+      fontStyle: "italic",
       w: "fit-content",
-      transition: 'all 0.5s ease-in-out',
+      transition: "all 0.5s ease-in-out",
 
-      position: 'relative',
+      position: "relative",
 
       _before: {
         content: '""',
-        position: 'absolute',
-        width: '100%',
-        height: '100%',
-        top: '0px',
-        left: '0',
-        borderRadius: '0',
-        bg: 'transparent',
-        bgImage: 'linear-gradient(currentColor, currentColor)',
-        bgPosition: '0% 100%',
-        bgSize: '0% 1px',
-        bgRepeat: 'no-repeat',
-        pointerEvents: 'none',
-        transition: 'background-size 0.3s ease-in-out',
+        position: "absolute",
+        width: "100%",
+        height: "100%",
+        top: "0px",
+        left: "0",
+        borderRadius: "0",
+        bg: "transparent",
+        bgImage: "linear-gradient(currentColor, currentColor)",
+        bgPosition: "0% 100%",
+        bgSize: "0% 1px",
+        bgRepeat: "no-repeat",
+        pointerEvents: "none",
+        transition: "background-size 0.3s ease-in-out",
       },
 
       _hover: {
         _before: {
-          bgSize: '100% 1px',
-          bgPosition: '100% 100%',
+          bgSize: "100% 1px",
+          bgPosition: "100% 100%",
         },
       },
     },
