@@ -6,6 +6,7 @@ import Col from "../comps/Misc/Col";
 import Container from "../comps/Misc/Container";
 
 const AllEntries = ({ contacts }) => {
+
     return (
         <Container bg="darkBlue" color="primary" minH="calc(100vh - var(--top-bar-height))" py={{ base: 8, lg: 16 }}>
             <Col
@@ -16,14 +17,14 @@ const AllEntries = ({ contacts }) => {
                 justifyContent="center"
                 alignItems="center"
             >
-                <Heading mb={{ base: 2, lg: 4 }}>All Entries</Heading>
+                <Heading as="h1" variant="h1" mb={{ base: 2, lg: 4 }} textTransform="uppercase">All Entries</Heading>
 
-                <Text textStyle="smallText">There is a total of {contacts.length} contacts for the moment</Text>
+                <Text textStyle="smallText">There is a total of {contacts.data.length} contacts for the moment</Text>
 
 
-                {contacts.length > 0 ?
+                {contacts.data.length > 0 ?
                     <SimpleGrid columns={4} spacing={8}>
-                        {contacts.map((contact, index) => (
+                        {contacts.data.map((contact, index) => (
                             <Flex key={`contact - ${index}`} flexDirection="column" mt={10} _notLast={{ mr: 8 }}>
                                 <Text textTransform="capitalize">{contact.firstname} {contact.lastname}</Text>
 
@@ -43,9 +44,11 @@ const AllEntries = ({ contacts }) => {
 
 export default AllEntries;
 
-AllEntries.getInitialProps = async () => {
-    const res = await fetch('http://localhost:3000/api/contacts')
-    const { data } = await res.json()
+export async function getStaticProps(){
+    const contacts = await fetch('http://localhost:3000/api/contacts').then((res) => res.json());
 
-    return { contacts: data }
+    return {
+		props: { contacts },
+        revalidate: 3600,
+	};
 }

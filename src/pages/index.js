@@ -13,7 +13,7 @@ export default function Home() {
   return (
     <Container bg="darkBlue" color="primary" h="calc(100vh - var(--top-bar-height))">
       <Col colStart={3} colEnd={25} display="flex" flexDirection="column" alignItems="center" justifyContent="center">
-        <Heading as="h1" variant="h1" mb={{ base: 8, lg: 16 }} textAlign={{ base: "center", lg: "left" }}>
+        <Heading as="h1" variant="h1" mb={{ base: 8, lg: 16 }} textAlign={{ base: "center", lg: "left" }} textTransform="uppercase">
           Wemanity Phonebook
         </Heading>
 

@@ -68,7 +68,7 @@ const newEntry = () => {
                 justifyContent="center"
                 alignItems="center"
             >
-                <Heading mb={{ base: 4, lg: 8 }}>New entry</Heading>
+                <Heading as="h1" variant="h1" mb={{ base: 4, lg: 8 }} textTransform="uppercase">New entry</Heading>
 
 
                 <Flex
