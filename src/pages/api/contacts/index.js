@@ -1,35 +1,63 @@
 /* eslint-disable import/no-anonymous-default-export */
-import dbConnect from '../../../../utils/dbConnect';
-import Contact from '../../../../models/Contact'
+import dbConnect from "../../../../utils/dbConnect";
+import Contact from "../../../../models/Contact";
 
-dbConnect()
+dbConnect();
 
 export default async (req, res) => {
+  const { method } = req;
 
-    const { method } = req
+  switch (method) {
+    case "GET":
+      try {
+        const pageNumber = parseInt(req.query.pageNumber) || 0;
+        const limit = parseInt(req.query.limit) || 12;
 
-    switch (method) {
-        case 'GET':
-            try {
-                const contacts = await Contact.find({})
+        const contacts = {};
 
-                res.status(200).json({ success: true, data: contacts })
-            } catch (error) {
-                res.status(400).json({ success: false, error })
-            }
-            break
+        const totalPosts = await Contact.countDocuments().exec();
 
-        case 'POST':
-            try {
-                const contact = await Contact.create(req.body)
+        let startIndex = pageNumber * limit;
+        const endIndex = (pageNumber + 1) * limit;
+        contacts.totalPosts = totalPosts;
 
-                res.status(201).json({ success: true, data: contact })
-            } catch (error) {
-                res.status(400).json({ success: false, error })
-            }
-            break
-        default:
-            res.status(400).json({ success: false, error })
-            break
-    }
-}
+        if (startIndex > 0) {
+          contacts.previous = {
+            pageNumber: pageNumber - 1,
+            limit: limit,
+          };
+        }
+        if (endIndex < (await Contact.countDocuments().exec())) {
+          contacts.next = {
+            pageNumber: pageNumber + 1,
+            limit: limit,
+          };
+        }
+
+        contacts.data = await Contact.find()
+          .sort("-_id")
+          .skip(startIndex)
+          .limit(limit)
+          .exec();
+        contacts.rowsPerPage = limit;
+
+        return res.json({ msg: "Posts Fetched successfully", data: contacts });
+      } catch (error) {
+        res.status(400).json({ success: false, error });
+      }
+      break;
+
+    case "POST":
+      try {
+        const contact = await Contact.create(req.body);
+
+        res.status(201).json({ success: true, data: contact });
+      } catch (error) {
+        res.status(400).json({ success: false, error });
+      }
+      break;
+    default:
+      res.status(400).json({ success: false, error });
+      break;
+  }
+};

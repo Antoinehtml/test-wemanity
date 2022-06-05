@@ -85,8 +85,13 @@ const EditEntry = ({ contact }) => {
         justifyContent="center"
         alignItems="center"
       >
-        <Heading as="h1" variant="h1" mb={{ base: 4, lg: 8 }}>
-          Update entry
+        <Heading
+          as="h1"
+          variant="h1"
+          textTransform="uppercase"
+          mb={{ base: 4, lg: 8 }}
+        >
+          Update contact
         </Heading>
 
         <Flex

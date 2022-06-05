@@ -13,16 +13,17 @@ import {
   ModalCloseButton,
   useDisclosure,
   ModalBody,
+  Spinner,
 } from "@chakra-ui/react";
 
 import Container from "../../comps/Misc/Container";
 import Col from "../../comps/Misc/Col";
 
 const Contact = ({ contact }) => {
-  const [isDeleting, setIsDeleting] = useState(false);
   const router = useRouter();
-
   const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const [isDeleting, setIsDeleting] = useState(false);
 
   useEffect(() => {
     if (isDeleting) {
@@ -74,7 +75,9 @@ const Contact = ({ contact }) => {
         mt={10}
       >
         {isDeleting ? (
-          <Text>Deleting...</Text>
+          <Text>
+            Deleting... <Spinner color="primary" />
+          </Text>
         ) : (
           <Flex flexDirection="column" alignItems="center" _notLast={{ mr: 8 }}>
             <Text>{contact.data.firstname}</Text>
