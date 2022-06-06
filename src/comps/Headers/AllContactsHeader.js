@@ -3,7 +3,7 @@ import Col from "../Misc/Col";
 import Container from "../Misc/Container";
 
 const AllContactsHeader = ({ numberContacts }) => (
-  <Container bg="darkBlue" color="primary" py={{ base: 8, lg: 16 }}>
+  <Container bg="darkBlue" color="primary" pt={{ base: 32, lg: 56 }} pb={{base: 16, lg: 32}}>
     <Col
       colStart={{ base: 3, lg: 5 }}
       colEnd={{ base: 25, lg: 23 }}

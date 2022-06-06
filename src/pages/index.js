@@ -20,6 +20,7 @@ import Container from "../comps/Misc/Container";
 import ContactCard from "../comps/Content/ContactCard";
 import SearchResults from "../comps/Content/SearchResults";
 import HomeHeader from "../comps/Headers/HomeHeader";
+import ShowMoreButton from "../comps/Misc/ShowMoreButton";
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
@@ -39,7 +40,7 @@ export default function Home() {
     setInputValue(event.target.value);
   };
 
-  //? Change placeholder'value every 3sec
+  //? Change searchbar's placeholder value every 3sec
   const placeholders = useMemo(
     () => ["...", "first name", "last name", "phone number"],
     []
@@ -88,7 +89,6 @@ export default function Home() {
 
       <Container
         color="darkBlue"
-        minH="calc(100vh - var(--top-bar-height))"
         py={searchDisplayed ? { base: 8, lg: 16 } : { base: 16, lg: 32 }}
       >
         <Col
@@ -113,7 +113,7 @@ export default function Home() {
                 />
 
                 {/* Dynamic Research */}
-                {searchedTerm && (
+                {searchedTerm && searchedTerm.length > 0 ? (
                   <>
                     <Collapse startingHeight={300} in={show}>
                       <Flex
@@ -145,30 +145,31 @@ export default function Home() {
                       </Flex>
                     </Collapse>
 
-                    <Flex
-                      display={searchedTerm.length > 5 ? "flex" : "none"}
-                      justifyContent="center"
-                      alignItems="center"
-                      position="absolute"
-                      bottom={show ? "-40px" : "0px"}
-                      w="100%"
-                      bgGradient={
-                        show
-                          ? "linear(to top, rgba(8, 8, 23, 1), rgba(8, 8, 23, 1))"
-                          : "linear-gradient(to top, rgba(8, 8, 23, 1), rgba(8, 8, 23, 1), rgba(8, 8, 23, 1), rgba(8, 8, 23, 1), rgba(8, 8, 23, 0.8), rgba(8, 8, 23, 0))"
-                      }
-                      borderBottomRightRadius="6px"
-                      borderBottomLeftRadius="6px"
-                      zIndex={2}
-                    >
-                      <Button variant="unstyled" onClick={handleToggle}>
-                        <Text color="primary">
-                          Show {show ? "less" : "more"} results
-                        </Text>
-                      </Button>
-                    </Flex>
+                    <ShowMoreButton
+                      searchedTerm={searchedTerm}
+                      show={show}
+                      handleToggle={handleToggle}
+                    />
                   </>
-                )}
+                ) : searchedTerm ? (
+                  <Flex
+                    flexDirection="column"
+                    bg="darkBlue"
+                    color="primary"
+                    borderBottomRightRadius="6px"
+                    borderBottomLeftRadius="6px"
+                    mb={{ base: 4, lg: 8 }}
+                  >
+                    <Text
+                      as="a"
+                      py={2}
+                      px={4}
+                      _hover={{ bg: "lightGray", color: "darkBlue" }}
+                    >
+                      Sorry, there&apos;s no match for this research...
+                    </Text>
+                  </Flex>
+                ) : null}
 
                 <InputRightElement>
                   <SearchIcon

@@ -20,10 +20,11 @@ import Link from "next/link";
 import Container from "../Misc/Container";
 import Col from "../Misc/Col";
 import ContactCard from "./ContactCard";
+import ModalDelete from "../Modals/ModalDelete";
 
 const SingleContactInfos = ({ contact }) => {
   const router = useRouter();
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const { onOpen, onClose, isOpen } = useDisclosure();
 
   const [isDeleting, setIsDeleting] = useState(false);
 
@@ -50,7 +51,7 @@ const SingleContactInfos = ({ contact }) => {
             onClose();
             setIsDeleting(false);
 
-            router.push("/all-entries");
+            router.push("/all-contacts");
           }
         });
     } catch (error) {
@@ -91,15 +92,16 @@ const SingleContactInfos = ({ contact }) => {
             <Flex
               flexDirection={{ base: "column", lg: "row" }}
               justifyContent="center"
-              mt={{ base: 4, lg: 0 }}
-              borderTop="1px solid #E4E7EC"
+              borderTop={{ base: null, lg: "1px solid #E4E7EC" }}
+              mt={{ base: 8, lg: 0 }}
             >
               <Button
                 variant="full_gradient"
                 onClick={onOpen}
                 mr={{ base: 0, lg: 0 }}
                 w={{ base: "100%", lg: "50%" }}
-                borderRight="1px solid #E4E7EC"
+                borderRight={{ base: null, lg: "1px solid #E4E7EC" }}
+                borderBottom={{ base: "1px solid #E4E7EC", lg: null }}
               >
                 <Text>Delete</Text>
               </Button>
@@ -117,29 +119,11 @@ const SingleContactInfos = ({ contact }) => {
           </>
         )}
 
-        <Modal isOpen={isOpen} onClose={onClose} isCentered>
-          <ModalOverlay />
-
-          <ModalContent>
-            <ModalHeader>Are you sure you want to delete this ?</ModalHeader>
-
-            <ModalCloseButton />
-
-            <ModalBody>
-              <Text>This action is irreversible...</Text>
-            </ModalBody>
-
-            <ModalFooter>
-              <Button variant="basic" mr={3} onClick={onClose}>
-                Cancel
-              </Button>
-
-              <Button variant="basic" onClick={handleDelete}>
-                Yes I&apos;m sure
-              </Button>
-            </ModalFooter>
-          </ModalContent>
-        </Modal>
+        <ModalDelete
+          handleDelete={handleDelete}
+          isOpen={isOpen}
+          onClose={onClose}
+        />
       </Col>
     </Container>
   );

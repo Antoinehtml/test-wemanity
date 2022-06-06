@@ -215,10 +215,10 @@ const EditEntryForm = ({ contact }) => {
               <ModalFooter>
                 <Button
                   variant="basic"
-                  onClick={() => router.push("/all-entries")}
+                  onClick={() => router.push("/all-contacts")}
                   mr={{ base: 4, lg: 8 }}
                 >
-                  See all entries
+                  See all contacts
                 </Button>
 
                 <Button variant="basic" onClick={() => router.push("/")}>

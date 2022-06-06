@@ -3,7 +3,7 @@ import Col from "../Misc/Col";
 import Container from "../Misc/Container";
 
 const NewEntryHeader = () => (
-  <Container bg="darkBlue" color="primary" py={{ base: 8, lg: 16 }}>
+  <Container bg="darkBlue" color="primary" pt={{ base: 32, lg: 56 }} pb={{base: 16, lg: 32}}>
     <Col
       colStart={{ base: 3, lg: 5 }}
       colEnd={{ base: 25, lg: 23 }}
@@ -11,7 +11,7 @@ const NewEntryHeader = () => (
       justifyContent="space-between"
       alignItems="flex-end"
     >
-      <Heading as="h1" variant="h1" whiteSpace="nowrap">
+      <Heading as="h1" variant="h1" >
         New entry
       </Heading>
     </Col>

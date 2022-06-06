@@ -25,8 +25,9 @@ const SearchResults = ({ searchedTerm, setSearchDisplayed }) => (
     </Flex>
 
     <SimpleGrid
-      columns={{ base: 1, sm: 2, lg: 4 }}
+      columns={{ base: 1, sm: 2, lg: 3 }}
       spacing={{ base: 4, sm: 8, lg: 12 }}
+      color="primary"
     >
       {searchedTerm.map((search, index) => (
         <ContactCard key={`searched-contact-${index}`} contact={search} />
