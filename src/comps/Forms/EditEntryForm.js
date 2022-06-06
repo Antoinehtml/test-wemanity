@@ -25,6 +25,7 @@ import {
 import Container from "../../comps/Misc/Container";
 import Col from "../../comps/Misc/Col";
 import { InfoOutlineIcon, PhoneIcon } from "@chakra-ui/icons";
+import ModalEdit from "../Modals/ModalEdit";
 
 const EditEntryForm = ({ contact }) => {
   const router = useRouter();
@@ -203,42 +204,7 @@ const EditEntryForm = ({ contact }) => {
             </Button>
           </Flex>
 
-          <Modal
-            onClose={onClose}
-            isOpen={isOpen}
-            motionPreset="slideInRight"
-            isCentered
-          >
-            <ModalOverlay />
-
-            <ModalContent>
-              <ModalCloseButton onClick={onClose} />
-
-              <ModalHeader>
-                Your contact has been successfully modified !
-              </ModalHeader>
-
-              <ModalBody>
-                <Text textStyle="smallText">
-                  Thank you for updating this infos
-                </Text>
-              </ModalBody>
-
-              <ModalFooter>
-                <Button
-                  variant="basic"
-                  onClick={() => router.push("/all-contacts")}
-                  mr={{ base: 4, lg: 8 }}
-                >
-                  See all contacts
-                </Button>
-
-                <Button variant="basic" onClick={() => router.push("/")}>
-                  Take me home
-                </Button>
-              </ModalFooter>
-            </ModalContent>
-          </Modal>
+          <ModalEdit onClose={onClose} isOpen={isOpen} />
         </Flex>
       </Col>
     </Container>
