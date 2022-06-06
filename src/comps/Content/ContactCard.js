@@ -7,12 +7,11 @@ const ContactCard = ({ contact, noEditOption }) => (
     display="flex"
     flexDirection="column"
     alignItems="center"
-    bg="mediumBlue"
+    bg="darkBlue"
     px={{ base: 6, lg: 10 }}
     py={{ base: 4, lg: 8 }}
-    borderRadius="6px"
     role="group"
-    _hover={noEditOption ? null : { bg: "lightBlue" }}
+    _hover={noEditOption ? null : { bg: "lightGray", color: "darkBlue" }}
     overflow="hidden"
   >
     <Text

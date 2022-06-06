@@ -10,7 +10,6 @@ const Button = {
     unstyled: {
       fontSize: "12px",
       bg: "transparent",
-      border: "none",
       h: "100%",
 
       py: 5,
@@ -29,8 +28,6 @@ const Button = {
       fontSize: "12px",
 
       bg: "transparent",
-      border: "1px solid #080817",
-      borderRadius: "6px",
 
       justifyContent: "center",
 
@@ -43,9 +40,8 @@ const Button = {
     },
     full_gradient: {
       fontSize: "12px",
-      bg: "transparent",
-      border: "1px solid #fff",
-      borderRadius: "6px",
+      bg: "darkBlue",
+      color: "primary",
 
       transition: "all 0.3s ease-in-out",
 
@@ -65,8 +61,7 @@ const Button = {
         height: "100%",
         top: "0",
         left: "0",
-        borderRadius: "6px",
-        bgImage: "linear-gradient(#fff, #fff)",
+        bgImage: "linear-gradient(#111144, #111144)",
         bgPosition: "0% 100%",
         bgSize: "0% 100%",
         bgRepeat: "no-repeat",
@@ -81,7 +76,7 @@ const Button = {
         },
 
         "& p": {
-          color: "darkBlue",
+          color: "lightGreen",
           zIndex: 1,
         },
 

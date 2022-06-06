@@ -1,55 +1,13 @@
-import { Flex, Heading, SimpleGrid, Text } from "@chakra-ui/react";
-import Link from "next/link";
-import ContactCard from "../comps/Content/ContactCard";
+import AllContactsHeader from "../comps/Headers/AllContactsHeader";
+import AllContactsContent from "../comps/Content/AllContactsContent";
 
-import Col from "../comps/Misc/Col";
-import Container from "../comps/Misc/Container";
+const AllContacts = ({ contacts }) => (
+    <>
+      <AllContactsHeader numberContacts={contacts.contacts.length} />
 
-const AllContacts = ({ contacts }) => {
-  return (
-    <Container
-      bg="darkBlue"
-      color="primary"
-      minH="calc(100vh - var(--top-bar-height))"
-      py={{ base: 8, lg: 16 }}
-    >
-      <Col
-        colStart={3}
-        colEnd={25}
-        display="flex"
-        flexDirection="column"
-        justifyContent="center"
-        alignItems="center"
-      >
-        <Heading
-          as="h1"
-          variant="h1"
-          mb={{ base: 2, lg: 4 }}
-          textTransform="uppercase"
-        >
-          All Contacts
-        </Heading>
-
-        <Text textStyle="smallText" mb={{ base: 16, lg: 8 }}>
-          There is a total of{" "}
-          {contacts.contacts.length > 0 ? contacts.contacts.length : 0} contacts
-          for the moment
-        </Text>
-
-        {contacts.contacts.length > 0 ? (
-          <SimpleGrid
-            columns={{ base: 1, sm: 2, lg: 4 }}
-            spacing={{ base: 4, sm: 8, lg: 12 }}
-          >
-            {contacts.contacts.map((contact, index) => (
-              <ContactCard key={`contact-${index}`} contact={contact} />
-            ))}
-          </SimpleGrid>
-        ) : null}
-      </Col>
-    </Container>
+      <AllContactsContent contacts={contacts.contacts} />
+    </>
   );
-};
 
 export default AllContacts;
 

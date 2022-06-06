@@ -31,6 +31,8 @@ const colors = {
   lightBlue: "#5c5c8b",
   mediumBlue: "#111144",
   darkBlue: "#080817",
+  lightGreen: "#ECFDF3",
+  mediumGreen: "#039855",
   lightGray: "#E4E7EC",
 };
 
@@ -46,10 +48,10 @@ const theme = extendTheme({
   textStyles: {
     // ? https://chakra-ui.com/docs/features/text-and-layer-styles#text-styles
     smallText: {
-      fontSize: ["10px", null, null, null, "12px"],
+      fontSize: ["12px", null, null, null, "14px"],
     },
     mediumText: {
-      fontSize: ["12px", null, null, null, "16px"],
+      fontSize: ["16px", null, null, null, "20px"],
     },
     underlined: {
       transition: "all 0.5s ease-in-out",
