@@ -14,10 +14,12 @@ import {
   useDisclosure,
   ModalBody,
   Spinner,
+  Heading,
 } from "@chakra-ui/react";
 
 import Container from "../../comps/Misc/Container";
 import Col from "../../comps/Misc/Col";
+import ContactCard from "../../comps/Content/ContactCard";
 
 const Contact = ({ contact }) => {
   const router = useRouter();
@@ -67,26 +69,34 @@ const Contact = ({ contact }) => {
       minH="calc(100vh - var(--top-bar-height))"
     >
       <Col
-        colStart={3}
-        colEnd={25}
+        colStart={{ base: 3, lg: 10 }}
+        colEnd={{ base: 25, lg: 18 }}
         d="flex"
         justifyContent="center"
         alignItems="center"
         mt={10}
       >
-        {isDeleting ? (
-          <Text>
-            Deleting... <Spinner color="primary" />
-          </Text>
+        {!contact ? (
+          <Flex>
+            <Text>Loading contact info... </Text>
+
+            <Spinner color="primary" />
+          </Flex>
+        ) : isDeleting ? (
+          <Flex>
+            <Text>Deleting...</Text>
+
+            <Spinner color="primary" />
+          </Flex>
         ) : (
-          <Flex flexDirection="column" alignItems="center" _notLast={{ mr: 8 }}>
-            <Text>{contact.data.firstname}</Text>
+          <>
+            <Heading as="h1" variant="h1" mb={{ base: 4, lg: 8 }}>
+              {contact.data.firstname}&apos;s contact
+            </Heading>
 
-            <Text>{contact.data.lastname}</Text>
+            <ContactCard contact={contact.data} noEditOption />
 
-            <Text mb={8}>{contact.data.phone}</Text>
-
-            <Flex>
+            <Flex justifyContent="center" mt={{ base: 4, lg: 8 }}>
               <Button variant="full_gradient" onClick={onOpen} mr={8}>
                 <Text>Delete</Text>
               </Button>
@@ -97,7 +107,7 @@ const Contact = ({ contact }) => {
                 </Button>
               </Link>
             </Flex>
-          </Flex>
+          </>
         )}
 
         <Modal isOpen={isOpen} onClose={onClose} isCentered>

@@ -12,7 +12,6 @@ const Button = {
       bg: "transparent",
       border: "none",
       h: "100%",
-      w: "100%",
 
       py: 5,
 
@@ -46,6 +45,7 @@ const Button = {
       fontSize: "12px",
       bg: "transparent",
       border: "1px solid #fff",
+      borderRadius: "6px",
 
       transition: "all 0.3s ease-in-out",
 
@@ -65,7 +65,7 @@ const Button = {
         height: "100%",
         top: "0",
         left: "0",
-        borderRadius: "0",
+        borderRadius: "6px",
         bgImage: "linear-gradient(#fff, #fff)",
         bgPosition: "0% 100%",
         bgSize: "0% 100%",

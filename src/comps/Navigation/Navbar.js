@@ -26,7 +26,7 @@ const Navbar = () => (
           </Text>
         </Link>
 
-        <Link href="/all-entries" passHref>
+        <Link href="/all-contacts" passHref>
           <Text as="a" textStyle="underlined">
             All contacts
           </Text>

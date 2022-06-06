@@ -26,8 +26,10 @@ const breakpoints = createBreakpoints({
 
 // ? https://chakra-ui.com/docs/theming/theme#colors
 const colors = {
-  primary: "white",
-  secondary: "black",
+  primary: "#fff",
+  secondary: "#000",
+  lightBlue: "#5c5c8b",
+  mediumBlue: "#111144",
   darkBlue: "#080817",
   lightGray: "#E4E7EC",
 };
@@ -45,6 +47,9 @@ const theme = extendTheme({
     // ? https://chakra-ui.com/docs/features/text-and-layer-styles#text-styles
     smallText: {
       fontSize: ["10px", null, null, null, "12px"],
+    },
+    mediumText: {
+      fontSize: ["12px", null, null, null, "16px"],
     },
     underlined: {
       transition: "all 0.5s ease-in-out",

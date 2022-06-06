@@ -129,7 +129,6 @@ export default function Home() {
                       borderBottomRightRadius="6px"
                       borderBottomLeftRadius="6px"
                       mb={searchedTerm ? { base: 4, lg: 8 } : 0}
-                      mt={-1}
                       zIndex={2}
                       position="relative"
                     >
@@ -153,6 +152,7 @@ export default function Home() {
                   </Collapse>
 
                   <Flex
+                    display={searchedTerm.length > 5 ? "flex" : "none"}
                     justifyContent="center"
                     alignItems="center"
                     position="absolute"
@@ -200,19 +200,28 @@ export default function Home() {
               </Heading>
 
               <Text textStyle="smallText">
-                There is {searchedTerm.length} results to your request
+                You&apos;ve searched for &apos;e&apos; ...
               </Text>
 
-              <Button
-                variant="unstyled"
-                onClick={() => setSearchDisplayed(false)}
-              >
-                <Text w="fit-content" textStyle="underlined">
-                  Go back
-                </Text>
-              </Button>
+              <Text textStyle="smallText">
+                There is {searchedTerm.length} results that match your request
+              </Text>
 
-              <SimpleGrid columns={4} spacing={8}>
+              <Flex justifyContent="flex-end" w="100%">
+                <Button
+                  variant="unstyled"
+                  onClick={() => setSearchDisplayed(false)}
+                >
+                  <Text w="fit-content" textStyle="underlined">
+                    Go back
+                  </Text>
+                </Button>
+              </Flex>
+
+              <SimpleGrid
+                columns={{ base: 1, sm: 2, lg: 4 }}
+                spacing={{ base: 4, sm: 8, lg: 12 }}
+              >
                 {searchedTerm.map((search, index) => (
                   <ContactCard
                     key={`searched-contact-${index}`}
