@@ -12,7 +12,7 @@ const Button = {
       bg: "transparent",
       h: "100%",
 
-      py: 5,
+      py: 7,
 
       _hover: {
         border: "none",
