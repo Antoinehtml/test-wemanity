@@ -50,6 +50,9 @@ const theme = extendTheme({
     smallText: {
       fontSize: ["12px", null, null, null, "14px"],
     },
+    regularText: {
+      fontSize: "14px",
+    },
     mediumText: {
       fontSize: ["16px", null, null, null, "20px"],
     },
@@ -79,6 +82,36 @@ const theme = extendTheme({
       _hover: {
         _before: {
           bgSize: "100% 1px",
+          bgPosition: "100% 100%",
+        },
+      },
+    },
+    bold_underlined: {
+      transition: "all 0.5s ease-in-out",
+      w: "fit-content",
+
+      position: "relative",
+
+      _before: {
+        content: '""',
+        position: "absolute",
+        width: "100%",
+        height: "100%",
+        bottom: "-10px",
+        left: "0",
+        borderRadius: "0",
+        bg: "transparent",
+        bgImage: "linear-gradient(currentColor, currentColor)",
+        bgPosition: "0% 100%",
+        bgSize: "0% 2px",
+        bgRepeat: "no-repeat",
+        pointerEvents: "none",
+        transition: "background-size 0.3s ease-in-out",
+      },
+
+      _hover: {
+        _before: {
+          bgSize: "100% 2px",
           bgPosition: "100% 100%",
         },
       },

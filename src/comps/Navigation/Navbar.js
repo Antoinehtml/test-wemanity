@@ -3,8 +3,11 @@ import Link from "next/link";
 import { Flex, Icon, List, Text, useMediaQuery } from "@chakra-ui/react";
 
 import Fullscreen from "./Fullscreen";
+import { useRouter } from "next/router";
 
 const Navbar = () => {
+  const router = useRouter();
+
   const [fullscreen, setFullscreen] = useState(false);
   const [isLargerThan768] = useMediaQuery("(min-width: 768px)");
 
@@ -33,13 +36,56 @@ const Navbar = () => {
         {isLargerThan768 ? (
           <List d="flex">
             <Link href="/new-entry" passHref>
-              <Text as="a" textStyle="underlined" mr={{ base: 4, lg: 8 }}>
-                Add contact
+              <Text
+                position="relative"
+                as="a"
+                textStyle={
+                  router.pathname === "/new-entry"
+                    ? "regularText"
+                    : "bold_underlined"
+                }
+                mr={{ base: 4, lg: 8 }}
+                _after={
+                  router.pathname === "/new-entry"
+                    ? {
+                        content: "''",
+                        position: "absolute",
+                        bottom: "-10px",
+                        left: "0px",
+                        w: "100%",
+                        h: "2px",
+                        bg: "primary",
+                      }
+                    : null
+                }
+              >
+                New entry
               </Text>
             </Link>
 
             <Link href="/all-contacts" passHref>
-              <Text as="a" textStyle="underlined">
+              <Text
+                position="relative"
+                as="a"
+                textStyle={
+                  router.pathname === "/all-contacts"
+                    ? "regularText"
+                    : "bold_underlined"
+                }
+                _after={
+                  router.pathname === "/all-contacts"
+                    ? {
+                        content: "''",
+                        position: "absolute",
+                        bottom: "-10px",
+                        left: "0px",
+                        w: "100%",
+                        h: "2px",
+                        bg: "primary",
+                      }
+                    : null
+                }
+              >
                 All contacts
               </Text>
             </Link>

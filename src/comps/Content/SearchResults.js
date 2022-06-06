@@ -4,7 +4,7 @@ import ContactCard from "./ContactCard";
 
 const SearchResults = ({ searchedTerm, setSearchDisplayed }) => (
   <>
-    <Heading as="h1" variant="h1" mb={{ base: 2, lg: 4 }}>
+    <Heading as="h1" variant="h1" mb={2}>
       Your results
     </Heading>
 

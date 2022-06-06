@@ -37,7 +37,13 @@ export default function Home() {
   // ? Catch input's value and set it in a State
   const [inputValue, setInputValue] = useState("");
   const handleChange = (event) => {
-    setInputValue(event.target.value);
+    // let toUppercase = event.target.value.toUppercase();
+    const targetValue = event.target.value;
+
+    const eventCapitalize =
+      targetValue.charAt(0).toUpperCase() + targetValue.slice(1);
+
+    setInputValue(eventCapitalize);
   };
 
   //? Change searchbar's placeholder value every 3sec
@@ -67,6 +73,8 @@ export default function Home() {
   const searchedTerm =
     inputValue !== ""
       ? contacts.filter((contact) => {
+          // console.log(contact.firstname.toUppercase());
+
           return (
             contact.firstname.includes(inputValue) ||
             contact.lastname.includes(inputValue) ||
@@ -114,6 +122,7 @@ export default function Home() {
 
                 {/* Dynamic Research */}
                 {searchedTerm && searchedTerm.length > 0 ? (
+                  // If there's an input and a match
                   <>
                     <Collapse startingHeight={300} in={show}>
                       <Flex
@@ -152,6 +161,7 @@ export default function Home() {
                     />
                   </>
                 ) : searchedTerm ? (
+                  // If there's an input but no match
                   <Flex
                     flexDirection="column"
                     bg="darkBlue"
