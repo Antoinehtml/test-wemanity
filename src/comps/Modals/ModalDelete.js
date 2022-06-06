@@ -21,14 +21,13 @@ const ModalDelete = ({ handleDelete, onClose, isOpen }) => {
 
         <ModalCloseButton />
 
-        <ModalBody mb={{base: 4, lg: 8}}>
+        <ModalBody mb={{ base: 4, lg: 8 }}>
           <Text textStyle="smallText">This action is irreversible...</Text>
         </ModalBody>
 
-        <ModalFooter borderTop="1px solid #000" py={0}>
+        <ModalFooter borderTop="1px solid #000" py={0} px={0}>
           <Button
             variant="basic"
-            mr={3}
             onClick={onClose}
             borderRight="1px solid #000"
           >

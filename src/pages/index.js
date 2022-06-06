@@ -27,7 +27,7 @@ const fetcher = (...args) => fetch(...args).then((res) => res.json());
 export default function Home() {
   const [searchDisplayed, setSearchDisplayed] = useState(false);
 
-  // ? Function for Collapse component
+  // ? Function for Collapse component(https://v0.chakra-ui.com/collapse)
   const [show, setShow] = useState(false);
 
   const handleToggle = () => {
@@ -37,7 +37,6 @@ export default function Home() {
   // ? Catch input's value and set it in a State
   const [inputValue, setInputValue] = useState("");
   const handleChange = (event) => {
-    // let toUppercase = event.target.value.toUppercase();
     const targetValue = event.target.value;
 
     const eventCapitalize =
@@ -73,8 +72,6 @@ export default function Home() {
   const searchedTerm =
     inputValue !== ""
       ? contacts.filter((contact) => {
-          // console.log(contact.firstname.toUppercase());
-
           return (
             contact.firstname.includes(inputValue) ||
             contact.lastname.includes(inputValue) ||
@@ -97,7 +94,7 @@ export default function Home() {
 
       <Container
         color="darkBlue"
-        py={searchDisplayed ? { base: 8, lg: 16 } : { base: 16, lg: 32 }}
+        py={{ base: 8, lg: 16 }}
       >
         <Col
           colStart={3}

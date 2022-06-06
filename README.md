@@ -1,34 +1,45 @@
+# Phonebook Test
+
+This phonebook App allows a user to search a contact via his/her first name, last name and phone number.
+The user can also add, edit and delete a contact.
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+## How To Use
 
-First, run the development server:
+To clone and run this application, you'll need [Git](https://git-scm.com) and [Node.js](https://nodejs.org/en/download/) (which comes with [npm](http://npmjs.com)) installed on your computer. From your command line:
 
 ```bash
-npm run dev
-# or
-yarn dev
+# Clone this repository
+$ git clone https://github.com/Antoinehtml/test-wemanity.git
+
+# Go into the repository
+$ cd test-wemanity
+
+# Install dependencies
+$ npm install
+
+# Run the app
+$ npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+> **Note** > [API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/contacts](http://localhost:3000/api/contacts).
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+## Credits
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+This software uses the following open source packages:
 
-## Learn More
+- [Node.js](https://nodejs.org/)
+- [Nextjs](https://nextjs.org/)
+- [SWR](https://swr.vercel.app/docs/with-nextjs)
+- [React-hook-form](https://react-hook-form.com/get-started)
+- [Chakra-UI](https://chakra-ui.com/)
+- [Framer Motion](https://www.framer.com/docs/)
+- [Mongoose](https://www.mongodb.com/)
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+> [antoine-coulon.com](https://www.antoine-coulon.com) &nbsp;&middot;&nbsp;
+> GitHub [@Antoinehtml](https://github.com/Antoinehtml/) &nbsp;&middot;&nbsp;

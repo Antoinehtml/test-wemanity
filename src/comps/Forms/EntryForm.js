@@ -25,6 +25,7 @@ import {
 import { PhoneIcon, InfoOutlineIcon } from "@chakra-ui/icons";
 import Container from "../Misc/Container";
 import Col from "../Misc/Col";
+import ModalNewEntry from "../Modals/ModalNewEntry";
 
 const EntryForm = () => {
   const router = useRouter();
@@ -149,13 +150,13 @@ const EntryForm = () => {
 
             <InputGroup>
               <Input
-                placeholder="+32 02 3784350"
+                placeholder="+32 02 123456"
                 id="phone"
                 name="phone"
                 type="string"
                 {...register("phone", {
                   pattern: {
-                    value: /\+[1-9]{2}\s{1}\d{2}\s{1}\d{6,10}/,
+                    value: /\+[0-9]{2}\s{1}\d{2}\s{1}\d{6,10}/,
                     message: "Invalid phone format",
                   },
                 })}
@@ -179,42 +180,7 @@ const EntryForm = () => {
             <Text>Envoyer</Text>
           </Button>
 
-          <Modal
-            onClose={onClose}
-            isOpen={isOpen}
-            motionPreset="slideInRight"
-            isCentered
-          >
-            <ModalOverlay />
-
-            <ModalContent>
-              <ModalCloseButton onClick={onClose} />
-
-              <ModalHeader>
-                Your contact has been successfully added !
-              </ModalHeader>
-
-              <ModalBody>
-                <Text textStyle="smallText">
-                  Thank you for registering your phone number
-                </Text>
-              </ModalBody>
-
-              <ModalFooter>
-                <Button
-                  variant="basic"
-                  onClick={onClose}
-                  mr={{ base: 4, lg: 8 }}
-                >
-                  Add a new one
-                </Button>
-
-                <Button variant="basic" onClick={() => router.push("/")}>
-                  Take me home
-                </Button>
-              </ModalFooter>
-            </ModalContent>
-          </Modal>
+          <ModalNewEntry onClose={onClose} isOpen={isOpen} />
         </Flex>
       </Col>
     </Container>

@@ -168,7 +168,7 @@ const EditEntryForm = ({ contact }) => {
                 type="string"
                 {...register("phone", {
                   pattern: {
-                    value: /\+[1-9]{2}\s{1}\d{2}\s{1}\d{6,10}/,
+                    value: /\+[0-9]{2}\s{1}\d{2}\s{1}\d{6,10}/,
                     message: "Invalid phone format",
                   },
                 })}
@@ -182,14 +182,26 @@ const EditEntryForm = ({ contact }) => {
             <FormErrorMessage>{errors.phone?.message}</FormErrorMessage>
           </FormControl>
 
-          <Button
-            variant="full_gradient"
-            type="submit"
-            isLoading={isSubmitting}
-            mb={{ base: 8, lg: 0 }}
-          >
-            <Text>Update</Text>
-          </Button>
+          <Flex flexDirection={{ base: "column", lg: "row" }}>
+            <Button
+              variant="full_gradient"
+              onClick={() => router.back()}
+              mb={{ base: 4, lg: 0 }}
+              mr={{ base: 0, lg: 8 }}
+              w="100%"
+            >
+              <Text>Cancel</Text>
+            </Button>
+
+            <Button
+              variant="full_gradient"
+              type="submit"
+              isLoading={isSubmitting}
+              w="100%"
+            >
+              <Text>Update</Text>
+            </Button>
+          </Flex>
 
           <Modal
             onClose={onClose}

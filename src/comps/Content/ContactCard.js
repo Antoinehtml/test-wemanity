@@ -11,7 +11,7 @@ const ContactCard = ({ contact, noEditOption }) => (
     px={{ base: 6, lg: 10 }}
     py={{ base: 4, lg: 8 }}
     role="group"
-    _hover={noEditOption ? null : { bg: "lightGray", color: "darkBlue" }}
+    _hover={noEditOption ? null : { bg: "mediumBlue" }}
     overflow="hidden"
   >
     <Text

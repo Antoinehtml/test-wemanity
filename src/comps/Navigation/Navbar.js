@@ -1,6 +1,13 @@
 import { useState } from "react";
 import Link from "next/link";
-import { Flex, Icon, List, Text, useMediaQuery } from "@chakra-ui/react";
+import {
+  Flex,
+  Icon,
+  List,
+  Heading,
+  Text,
+  useMediaQuery,
+} from "@chakra-ui/react";
 
 import Fullscreen from "./Fullscreen";
 import { useRouter } from "next/router";
@@ -28,9 +35,9 @@ const Navbar = () => {
         px={{ base: 4, lg: 16 }}
       >
         <Link href="/" passHref>
-          <Text as="a" textTransform="uppercase" zIndex={11}>
+          <Heading as="a" variant="h5" textTransform="uppercase" zIndex={11}>
             Wemanity
-          </Text>
+          </Heading>
         </Link>
 
         {isLargerThan768 ? (

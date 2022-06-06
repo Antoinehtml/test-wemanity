@@ -9,7 +9,7 @@ import Input from "./Input";
 // ? https://chakra-ui.com/docs/theming/theme#typography
 const fonts = {
   heading:
-    'Epilogue, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
+    'Manrope, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
   body: 'Inter, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
 };
 
@@ -179,64 +179,6 @@ const theme = extendTheme({
         minHeight: "100%",
         display: "grid",
         gridTemplateRows: "1fr auto",
-      },
-
-      // ? nprogress
-      "#nprogress": {
-        pointerEvents: "none",
-      },
-      "#nprogress .bar": {
-        background: "var(--nProgressColor)",
-        position: "fixed",
-        zIndex: "1000000",
-        top: "0",
-        left: "0",
-        width: "100%",
-        height: "4px",
-      },
-      "#nprogress .peg": {
-        display: "block",
-        position: "absolute",
-        right: "0px",
-        width: "100px",
-        height: "100%",
-        opacity: "1",
-        transform: "rotate(3deg) translate(0px, -4px)",
-      },
-      "#nprogress .spinner": {
-        display: "block",
-        position: "fixed",
-        zIndex: "1000000",
-        top: "15px",
-        right: "15px",
-      },
-      "#nprogress .spinner-icon": {
-        width: "18px",
-        height: "18px",
-        boxSizing: "border-box",
-        border: "solid 2px transparent",
-        borderTopColor: "var(--nProgressColor)",
-        borderLeftColor: "var(--nProgressColor)",
-        borderRadius: "50%",
-        animation: "nprogress-spinner 400ms linear infinite",
-      },
-      ".nprogress-custom-parent": {
-        overflow: "hidden",
-        position: "relative",
-      },
-      ".nprogress-custom-parent #nprogress .spinner": {
-        position: "absolute",
-      },
-      ".nprogress-custom-parent #nprogress .bar": {
-        position: "absolute",
-      },
-      "@keyframes nprogress-spinner": {
-        "0%": {
-          transform: "rotate(0deg)",
-        },
-        "100%": {
-          transform: "rotate(360deg)",
-        },
       },
     }),
   },
