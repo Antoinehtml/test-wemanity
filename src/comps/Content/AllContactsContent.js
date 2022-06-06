@@ -7,7 +7,6 @@ import ContactCard from "./ContactCard";
 const AllContactsContent = ({ contacts }) => (
   <Container
     color="primary"
-    minH="calc(100vh - var(--top-bar-height))"
     py={{ base: 8, lg: 16 }}
   >
     <Col
@@ -15,7 +14,6 @@ const AllContactsContent = ({ contacts }) => (
       colEnd={25}
       display="flex"
       flexDirection="column"
-      justifyContent="center"
       alignItems="center"
     >
       {contacts.length > 0 ? (
